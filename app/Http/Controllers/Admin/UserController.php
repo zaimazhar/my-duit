@@ -40,7 +40,16 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::find($id);
+
+        if($user) {
+            return Inertia::render('admin/view-user', [
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                ],
+            ]);
+        }
     }
 
     /**
