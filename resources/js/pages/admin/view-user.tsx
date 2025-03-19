@@ -1,5 +1,7 @@
 import AppLayout from '@/layouts/app-layout';
 import { Head } from '@inertiajs/react'
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 export default function ViewUser(props: { user: { id: number; name: string } }) {
     return (
@@ -7,16 +9,10 @@ export default function ViewUser(props: { user: { id: number; name: string } }) 
             <Head title="View User" />
             
             <div className='m-4 p-4'>
-                <div className='flex flex-col'>
-                <div className='flex flex-row'>
-                    <div className='w-[100px]'>ID</div>
-                    <div>{props.user.id}</div>
-                </div>
-                <div className='flex flex-row'>
-                    <div className='w-[100px]'>Name</div>
-                    <div>{props.user.name}</div>
-                </div>
-                </div>
+                <div className='text-4xl'>Viewing {props.user.name}</div>
+                <hr className='my-4' />
+                <Input placeholder='Username' value={props.user.name}></Input>
+                <Button className='bg-blue-500 hover:bg-blue-700 hover:cursor-pointer transition duration-400 my-2'>Save</Button>
             </div>
         </AppLayout>
     )
