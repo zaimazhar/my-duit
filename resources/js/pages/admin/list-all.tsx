@@ -1,5 +1,5 @@
 import AppLayout from '@/layouts/app-layout';
-import { Head } from '@inertiajs/react'
+import { Head, Link } from '@inertiajs/react'
 import {
   Table,
   TableHeader,
@@ -31,7 +31,7 @@ export default function ListAll(props: { users: { id: number; name: string }[] }
               <TableRow key={item.id}>
                 <TableCell>{item.id}</TableCell>
                 <TableCell>{item.name}</TableCell>
-                <TableCell><Button className='mx-1 bg-blue-500 hover:bg-blue-700 hover:cursor-pointer transition duration-400'>Edit</Button><Button className='mx-1 bg-red-500 hover:bg-red-700 hover:cursor-pointer transition duration-400'>Delete</Button></TableCell>
+                <TableCell><Link href={'users/' + item.id}><Button className='mx-1 bg-blue-500 hover:bg-blue-700 hover:cursor-pointer transition duration-400'>Edit</Button></Link><Button className='mx-1 bg-red-500 hover:bg-red-700 hover:cursor-pointer transition duration-400'>Delete</Button></TableCell>
               </TableRow>
             ))}
           </TableBody>
