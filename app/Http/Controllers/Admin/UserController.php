@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
-use Inertia\Inertia;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
@@ -24,7 +24,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -32,7 +31,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -42,7 +40,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        if($user) {
+        if ($user) {
             return Inertia::render('admin/view-user', [
                 'user' => [
                     'id' => $user->id,
@@ -57,15 +55,21 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        if ($user) {
+            $user->name = $request->input('name');
+            $user->save();
+
+            return redirect()->route('users.show', [
+                'user' => $user->id,
+            ])->with('success', 'User updated successfully.');
+        }
     }
 
     /**
@@ -73,6 +77,5 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
     }
 }
